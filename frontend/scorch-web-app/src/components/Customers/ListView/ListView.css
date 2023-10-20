@@ -1,0 +1,8 @@
+.customer-list {
+    list-style-type: none;
+    padding: 20px 0;
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  /* Creates spacing between each list item */
+}

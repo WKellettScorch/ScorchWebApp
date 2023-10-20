@@ -1,0 +1,18 @@
+root{
+--primary-color: #0d52c7;
+--secondary-color: #e9e4eb;
+--text-color: #000000;
+--text-color-alt: #ffffff;
+--light-grey-color: #555;
+--grey-color: #333;
+--black-color: #000;
+--background1-color: #e2e2e2;
+--background2-color: $secondary-color;
+--buttonHover-color: rgba(13, 82, 199, 0.6);
+}
+
+/* Hide the text cursor globally */
+*::selection {
+    caret-color: transparent;
+  }
+  

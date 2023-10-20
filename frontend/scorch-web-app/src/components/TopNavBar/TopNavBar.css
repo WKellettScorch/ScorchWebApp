@@ -1,0 +1,29 @@
+.topNavBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #b3b3b3;
+    padding: 10px;
+    height: 60px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.leftSection, .rightSection {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Left-align items in the left section */
+}
+
+.rightSection {
+    justify-content: flex-end; /* Right-align items in the right section */
+}
+
+.centerSection {
+    display: flex;
+    align-items: center;
+}

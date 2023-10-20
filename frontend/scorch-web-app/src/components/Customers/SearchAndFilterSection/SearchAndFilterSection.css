@@ -1,0 +1,9 @@
+.search-and-filter {
+    display: flex;
+    align-items: center;
+}
+
+input {
+    user-select: text;
+}
+
