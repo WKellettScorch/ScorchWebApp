@@ -42,13 +42,15 @@
 
     }
 
-    .topNavbar .centerSection,
-    .topNavBar .rightSection {
+    .topNavbar .centerSection{
         display: block;
         max-width: 30%;
         max-height: 30%;
         margin-right: 10px;
         margin-left: 20px;
+    }
+    .topNavBar .rightSection {
+        display: none;
     }
 
     .topNavBar .hamburgerMenu {
