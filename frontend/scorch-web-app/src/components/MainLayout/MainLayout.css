@@ -1,2 +1,35 @@
 /*"\frontend\scorch-web-app\src\components\MainLayout\MainLayout.css" */
-.mainLayout {     display: flex;     flex-direction: column;     height: 98vh;     width: 99vw; }  .bodyWrapper {     display: flex;     flex: 1; }  .sideBar {     display: flex;     flex-direction: column;     align-items: stretch; /* Items will take the full width of sideBar */     background-color: #dddddd;     width: 250px; /* Increased width */     box-shadow: 2px 0 5px rgba(0, 66, 209, 0.877); }  .contentArea {     flex-grow: 1;     overflow: auto;     padding: 20px; }
+.mainLayout {
+    display: flex;
+    flex-direction: column;
+    height: 98vh;
+    width: 99vw;
+}
+
+.bodyWrapper {
+    display: flex;
+    flex: 1;
+}
+
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    /* Items will take the full width of sideBar */
+    background-color: #dddddd;
+    width: 250px;
+    /* Increased width */
+    box-shadow: 2px 0 5px rgba(0, 66, 209, 0.877);
+}
+
+.contentArea {
+    flex-grow: 1;
+    overflow: auto;
+    padding: 20px;
+}
+
+@media (min-width: 769px) {
+    .sideBar{
+        width: 0px;
+    }
+}
