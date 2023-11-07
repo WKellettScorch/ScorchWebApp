@@ -48,8 +48,8 @@
 
     /* Mobile styles */
     .hamburgerMenu {
-        display: block;
-        z-index: 30;
+        /*display: block;*/
+        z-index: 2;
     }
 
     .topNavBar {
