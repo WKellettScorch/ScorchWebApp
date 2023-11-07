@@ -49,9 +49,7 @@
     /* Mobile styles */
     .hamburgerMenu {
         display: block;
-        /* Show hamburger menu */
         z-index: 30;
-        /* Above the sidebar and content */
     }
 
     .topNavBar {
