@@ -34,7 +34,6 @@
 
 @media (max-width: 768px) {
     .topNavBar .leftSection {
-        display: block;
         max-width: 30%;
         max-height: 30%;
         margin-right: 10px;
@@ -42,8 +41,7 @@
 
     }
 
-    .topNavbar .centerSection{
-        display: block;
+    .topNavbar .centerSection {
         max-width: 30%;
         max-height: 30%;
         margin-right: 10px;
