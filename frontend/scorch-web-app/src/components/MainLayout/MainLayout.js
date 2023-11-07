@@ -10,6 +10,7 @@ const MainLayout = ({ children }) => {
     // Function to toggle the visibility
     const toggleNavVisibility = () => {
         setIsNavVisible(!isNavVisible);
+        console.log("It's clicking");
     };    
 
     return (
