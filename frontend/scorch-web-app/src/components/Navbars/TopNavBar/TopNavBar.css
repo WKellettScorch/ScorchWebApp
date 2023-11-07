@@ -33,7 +33,7 @@
 }
 
 @media (max-width: 768px) {
-    .topNavBar .leftSection img {
+    .topNavBar .leftSection {
         display: block;
         max-width: 30%;
         max-height: 30%;
