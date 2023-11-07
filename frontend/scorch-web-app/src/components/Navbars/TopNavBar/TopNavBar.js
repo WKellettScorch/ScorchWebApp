@@ -9,7 +9,8 @@ const TopNavBar = ({ toggleNavVisibility }) => {
     return (
         <div className="topNavBar">
             <div className="leftSection">
-                <div className="hamburgerMenu" onClick={toggleNavVisibility}>
+                <div className="hamburgerMenu" onClick={
+                    toggleNavVisibility}>
                     <FaBars size={20} />
                 </div>
                 <img src={ScorchLogo} alt="Scorch Logo"></img>
