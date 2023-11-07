@@ -1,35 +1,53 @@
-/*"\frontend\scorch-web-app\src\components\MainLayout\MainLayout.css" */
 .mainLayout {
     display: flex;
     flex-direction: column;
-    height: 98vh;
-    width: 99vw;
+    height: 100vh; /* full height */
+    width: 100vw; /* full width */
+    overflow-x: hidden; /* prevents horizontal scroll */
 }
 
 .bodyWrapper {
     display: flex;
     flex: 1;
+    transition: margin-left 0.5s; /* smooth transition for sidebar */
 }
 
 .sideBar {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    /* Items will take the full width of sideBar */
     background-color: #dddddd;
     width: 250px;
-    /* Increased width */
-    box-shadow: 2px 0 5px rgba(0, 66, 209, 0.877);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    position: fixed; /* fixed position */
+    z-index: 1; /* above the content */
+    left: -250px; /* initially off screen */
+    height: 100%; /* full height */
+    overflow-x: hidden; /* prevents horizontal scroll */
+    transition: 0.5s; /* smooth transition for sidebar */
 }
 
 .contentArea {
     flex-grow: 1;
     overflow: auto;
     padding: 20px;
+    margin-left: 0; /* no margin if sidebar is hidden */
 }
 
-@media (min-width: 769px) {
-    .sideBar{
-        width: 0px;
+/* When sideBar is open, shift contentArea */
+.sideBarOpen .contentArea {
+    margin-left: 250px; /* match the width of the sidebar */
+}
+
+/* Mobile view */
+@media screen and (max-width: 768px) {
+    .sideBar {
+        width: 100%; /* full width */
+        left: -100%; /* initially off screen */
+    }
+
+    /* When sideBar is open, shift contentArea */
+    .sideBarOpen .contentArea {
+        margin-left: 100%; /* full width */
     }
 }
