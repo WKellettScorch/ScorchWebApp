@@ -41,11 +41,6 @@
 
     }
 
-    .topNavBar .centerSection,
-    .topNavBar .rightSection {
-        display: none;
-    }
-
     .topNavBar .hamburgerMenu {
         display: block;
     }
