@@ -1,11 +1,2 @@
-.logoContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.logoImage {
-    width: 80%;
-    max-width: 150px;
-}
+/*"\frontend\scorch-web-app\src\components\Logo\Logo.css" */
+.logoContainer {     display: flex;     justify-content: center;     align-items: center;     padding: 20px; }  .logoImage {     width: 80%;     max-width: 150px; }

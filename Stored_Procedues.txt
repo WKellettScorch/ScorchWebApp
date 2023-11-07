@@ -1,0 +1,184 @@
+USE [SCORCH_DB]
+GO
+/****** Object:  StoredProcedure [dbo].[GetCustomerAddressByClientID]    Script Date: 11/6/2023 11:06:49 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[GetCustomerAddressByClientID]
+    @ClientID INT
+AS
+BEGIN
+    SELECT 
+        Cust.CustomerID, 
+        Cust.FirstName, 
+        Cust.LastName, 
+        Cust.Email, 
+        Cust.Phone, 
+        Addr.StreetAddress, 
+        Addr.City, 
+        Addr.State, 
+        Addr.ZipCode, 
+        Addr.GeoCoordinates
+    FROM 
+        Customers Cust 
+    JOIN 
+        Addresses Addr ON Cust.AddressID = Addr.AddressID
+    WHERE 
+        Cust.ClientID = @ClientID
+	ORDER BY Cust.CustomerID DESC
+END
+
+
+
+
+USE [SCORCH_DB]
+GO
+/****** Object:  StoredProcedure [dbo].[SearchCustomersByFields]    Script Date: 11/6/2023 11:08:55 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[SearchCustomersByFields]
+    @ClientID INT,
+    @Name NVARCHAR(255),
+    @Email NVARCHAR(255),
+    @Address NVARCHAR(255)
+AS
+BEGIN
+    SELECT 
+        Cust.CustomerID, 
+        Cust.FirstName, 
+        Cust.LastName, 
+        Cust.Email, 
+        Cust.Phone, 
+        Addr.StreetAddress, 
+        Addr.City, 
+        Addr.State, 
+        Addr.ZipCode, 
+        Addr.GeoCoordinates
+    FROM 
+        Customers Cust 
+    JOIN 
+        Addresses Addr ON Cust.AddressID = Addr.AddressID
+    WHERE 
+	Cust.ClientID = @ClientID AND
+        (Cust.FirstName LIKE '%' + @Name + '%' OR Cust.LastName LIKE '%' + @Name + '%' OR @Name IS NULL OR @Name = '') AND
+        (Cust.Email LIKE '%' + @Email + '%' OR @Email IS NULL OR @Email = '') AND
+        (Addr.StreetAddress LIKE '%' + @Address + '%' OR Addr.City LIKE '%' + @Address + '%' OR Addr.State LIKE '%' + @Address + '%' OR Addr.ZipCode LIKE '%' + @Address + '%' OR @Address IS NULL OR @Address = '')
+ORDER BY CustomerID DESC
+END
+
+
+
+
+USE [SCORCH_DB]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_InsertCustomer]    Script Date: 11/6/2023 11:09:06 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[sp_InsertCustomer]
+    @FirstName NVARCHAR(100),
+    @LastName NVARCHAR(100),
+    @Email NVARCHAR(255),
+    @Phone NVARCHAR(15),
+    @StreetAddress NVARCHAR(255),
+    @City NVARCHAR(100),
+    @State NVARCHAR(100),
+    @ZipCode NVARCHAR(10),
+    @GeoCoordinates NVARCHAR(100),
+    @ClientID INT
+AS
+BEGIN
+    -- Check if customer already exists based on FirstName, LastName, Email, Phone, and ClientID
+    IF NOT EXISTS (
+        SELECT 1 
+        FROM Customers 
+        WHERE FirstName = @FirstName 
+            AND LastName = @LastName 
+            AND Email = @Email 
+            AND Phone = @Phone
+            AND ClientID = @ClientID
+    )
+    BEGIN
+        -- Check if address already exists based on StreetAddress, City, State, and ZipCode
+        IF NOT EXISTS (
+            SELECT 1
+            FROM Addresses
+            WHERE StreetAddress = @StreetAddress 
+                AND City = @City 
+                AND State = @State 
+                AND ZipCode = @ZipCode
+        )
+        BEGIN
+            -- Insert address first
+            INSERT INTO Addresses (StreetAddress, City, State, ZipCode, GeoCoordinates)
+            VALUES (@StreetAddress, @City, @State, @ZipCode, @GeoCoordinates)
+
+            -- Then insert the customer, linking to the newly created address and the ClientID
+            INSERT INTO Customers (FirstName, LastName, Email, Phone, AddressID, ClientID)
+            VALUES (@FirstName, @LastName, @Email, @Phone, SCOPE_IDENTITY(), @ClientID)
+        END
+        ELSE
+        BEGIN
+            PRINT 'Address already exists!'
+        END
+    END
+    ELSE
+    BEGIN
+        PRINT 'Customer already exists!'
+    END
+END
+
+
+
+USE [SCORCH_DB]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_UpdateCustomerAndAddress]    Script Date: 11/6/2023 11:09:17 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[sp_UpdateCustomerAndAddress]
+    @CustomerID INT,
+    @FirstName NVARCHAR(100),
+    @LastName NVARCHAR(100),
+    @Email NVARCHAR(255),
+    @Phone NVARCHAR(15),
+    @StreetAddress NVARCHAR(255),
+    @City NVARCHAR(100),
+    @State NVARCHAR(100),
+    @ZipCode NVARCHAR(10),
+    @GeoCoordinates NVARCHAR(100)
+AS
+BEGIN
+    DECLARE @AddressID INT
+
+    -- First, check if the address already exists
+    SELECT @AddressID = AddressID 
+    FROM Addresses
+    WHERE StreetAddress = @StreetAddress 
+        AND City = @City 
+        AND State = @State 
+        AND ZipCode = @ZipCode
+
+    -- If address doesn't exist, insert it
+    IF @AddressID IS NULL
+    BEGIN
+        INSERT INTO Addresses (StreetAddress, City, State, ZipCode, GeoCoordinates)
+        VALUES (@StreetAddress, @City, @State, @ZipCode, @GeoCoordinates)
+
+        SET @AddressID = SCOPE_IDENTITY()
+    END
+
+    -- Update customer record
+    UPDATE Customers
+    SET FirstName = @FirstName, 
+        LastName = @LastName, 
+        Email = @Email, 
+        Phone = @Phone, 
+        AddressID = @AddressID
+    WHERE CustomerID = @CustomerID
+END

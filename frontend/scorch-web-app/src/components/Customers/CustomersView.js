@@ -8,7 +8,7 @@ import SearchAndFilterSection from './SearchAndFilterSection/SearchAndFilterSect
 import ListView from './ListView/ListView';
 import { searchCustomersByFields } from '../../api/CustomerAPI';
 import AddCustomerForm from './Header/AddCustomerForm';
-
+import EditCustomerForm from './Header/EditCustomerForm';
 
 const CustomersView = () => {
     // A state to store all customers
@@ -20,6 +20,8 @@ const CustomersView = () => {
     // A state to store selected customer details for the details panel
     const [selectedCustomer, setSelectedCustomer] = useState(null);
     const [showAddForm, setShowAddForm] = useState(false);
+    const [showEditForm, setShowEditForm] = useState(false);
+    const [editingCustomer, setEditingCustomer] = useState(null);
 
     // This would fetch customers from API or any other source.
     // I've used useEffect for demonstration but you'll integrate it with your actual API calls or data fetching mechanism.
@@ -44,6 +46,14 @@ const CustomersView = () => {
             });
     }
     
+        const handleEditCustomerClick = (customer) => {
+            console.log("Edit button clicked in CustomersView");
+        setEditingCustomer(customer);
+        setShowEditForm(true);
+
+
+    };
+    
     const handleAddCustomerClick = () => {
     setShowAddForm(true);
 };
@@ -58,13 +68,15 @@ const handleCloseAddForm = () => {
             <AddCustomerButton onClick={handleAddCustomerClick} />
         </Header>
         {showAddForm && <AddCustomerForm onClose={handleCloseAddForm} />}
+	
         <SearchAndFilterSection onSearch={handleSearch} />
         <ListView 
             customers={displayedCustomers} 
             setSelectedCustomer={setSelectedCustomer}
             selectedCustomerId={selectedCustomer ? selectedCustomer.CustomerID : null}
+	    onEdit={handleEditCustomerClick}
         />
-
+	{showEditForm && <EditCustomerForm onClose={() => setShowEditForm(false)} customer={editingCustomer} />}
             
         </div>
     );

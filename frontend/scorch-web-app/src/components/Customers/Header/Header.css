@@ -1,6 +1,2 @@
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-}
+/*"\frontend\scorch-web-app\src\components\Customers\Header\Header.css" */
+.header-container {     display: flex;     justify-content: space-between;     align-items: center;     padding: 10px 20px;    }

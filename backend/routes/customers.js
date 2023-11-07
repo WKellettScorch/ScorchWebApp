@@ -69,6 +69,22 @@ router.post('/add', async (req, res) => {
 });
 
 
+// Update a customer and their address
+router.post('/update', async (req, res) => {
+  try {
+      console.log("Update customer route hit!");
+      const { CustomerID, FirstName, LastName, Email, Phone, StreetAddress, City, State, ZipCode, GeoCoordinates } = req.body;
+
+      await CustomerAddressSP.editCustomer(CustomerID, FirstName, LastName, Email, Phone, StreetAddress, City, State, ZipCode, GeoCoordinates);
+
+      res.json({ message: "Customer updated successfully!" });
+
+  } catch (err) {
+      console.error('Error:', err.message);
+      console.error(err.stack);
+      res.status(500).send('Server error');
+  }
+});
 
 
 

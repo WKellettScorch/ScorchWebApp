@@ -1,10 +1,16 @@
+/*"\frontend\scorch-web-app\src\components\Customers\DetailsPanel\DetailsPanel.css" */
 .details-panel {
     padding: 20px;
     border-left: 1px solid #eee;
     border-radius: 5px;
+    background-color: #f9f9f9;
+    /* optional: a light gray background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* optional: a subtle shadow for depth */
 }
 
-.details-panel h2, .details-panel p {
+.details-panel h2,
+.details-panel p {
     margin: 0 0 10px;
 }
 

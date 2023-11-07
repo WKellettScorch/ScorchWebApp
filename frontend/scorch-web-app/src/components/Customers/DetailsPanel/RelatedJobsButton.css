@@ -1,3 +1,19 @@
+/*"\frontend\scorch-web-app\src\components\Customers\DetailsPanel\RelatedJobsButton.css" */
 .related-jobs-button {
     margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #3498db;
+    /* a moderate blue */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    /* Add some hover effect for better UX */
+    &:hover {
+        background-color: #2980b9;
+        /* a slightly darker blue on hover */
+    }
 }

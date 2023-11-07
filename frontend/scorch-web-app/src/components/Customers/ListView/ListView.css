@@ -1,8 +1,2 @@
-.customer-list {
-    list-style-type: none;
-    padding: 20px 0;
-    margin: 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;  /* Creates spacing between each list item */
-}
+/*"\frontend\scorch-web-app\src\components\Customers\ListView\ListView.css" */
+.customer-list {     list-style-type: none;     padding: 20px 0;     margin: 0 20px;     display: flex;     flex-direction: column;     gap: 10px;  /* Creates spacing between each list item */ }  .button {     max-width: 10%;     padding: 10px 20px;     border-radius: 5px;     border: none;     background-color: #3498db; /* a moderate blue */     color: white;     cursor: pointer;     transition: background-color 0.3s;      /* Add some hover effect for better UX */     &:hover {         background-color: #2980b9; /* a slightly darker blue on hover */     } }

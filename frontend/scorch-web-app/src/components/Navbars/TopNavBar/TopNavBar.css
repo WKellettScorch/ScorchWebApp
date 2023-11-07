@@ -1,0 +1,97 @@
+/*"\frontend\scorch-web-app\src\components\Navbars\TopNavBar\TopNavBar.css" */
+.topNavBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #b3b3b3;
+    padding: 10px;
+    height: 60px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.leftSection,
+.rightSection {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* Left-align items in the left section */
+}
+
+.rightSection {
+    justify-content: flex-end;
+    /* Right-align items in the right section */
+}
+
+.centerSection {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .topNavBar .leftSection img {
+        display: none;
+    }
+
+    .topNavBar .centerSection,
+    .topNavBar .rightSection {
+        display: none;
+    }
+
+    .topNavBar .hamburgerMenu {
+        display: block;
+    }
+
+    /* Mobile styles */
+    .hamburgerMenu {
+        display: block;
+        /* Show hamburger menu */
+        z-index: 30;
+        /* Above the sidebar and content */
+    }
+
+    .topNavBar {
+        padding: 5px;
+        /* Less padding on mobile */
+        justify-content: space-between;
+        /* Align logo and hamburger menu on opposite ends */
+    }
+
+    .backButton {
+        /* Position the back button more conventionally on mobile */
+        position: absolute;
+        left: 10px;
+    }
+
+    /* Toggleable side navigation */
+    .sideNavBar {
+        position: fixed;
+        width: 250px;
+        /* Adjust based on your design */
+        height: 100%;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+        /* Start off-screen */
+        transition: transform 0.3s ease-in-out;
+        z-index: 20;
+        /* Above content, below hamburger menu */
+    }
+
+    .sideBarOpen {
+        transform: translateX(0);
+        /* Bring into view when toggled */
+    }
+
+    /* Dim the rest of the content when the menu is open */
+    .contentArea.dimmed {
+        position: relative;
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Semi-transparent overlay */
+    }
+}

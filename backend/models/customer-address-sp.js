@@ -57,6 +57,24 @@ CustomerAddressSP.addCustomer = async (ClientID, FirstName, LastName, Email, Pho
     });
 }
 
+CustomerAddressSP.editCustomer = async (CustomerID, FirstName, LastName, Email, Phone, StreetAddress, City, State, ZipCode, GeoCoordinates) => {
+    return await sequelize.query('EXEC sp_UpdateCustomerAndAddress @CustomerID=:CustomerID, @FirstName=:FirstName, @LastName=:LastName, @Email=:Email, @Phone=:Phone, @StreetAddress=:StreetAddress, @City=:City, @State=:State, @ZipCode=:ZipCode, @GeoCoordinates=:GeoCoordinates', {
+        replacements: {
+            CustomerID,
+            FirstName,
+            LastName,
+            Email,
+            Phone,
+            StreetAddress,
+            City,
+            State,
+            ZipCode,
+            GeoCoordinates
+        },
+        type: QueryTypes.UPDATE
+    });
+}
+
 
 
 

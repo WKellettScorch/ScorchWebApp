@@ -4,25 +4,33 @@ import CustomerListItem from './CustomerListItem';
 import './ListView.css';
 import { getCustomerAddressesByClientID } from '../../../api/CustomerAPI';
 
-const ListView = ({ customers: externalCustomers, setSelectedCustomer, selectedCustomerId }) => {
+const ListView = ({ customers: externalCustomers, setSelectedCustomer, selectedCustomerId, onEdit }) => {
     const [customers, setCustomers] = useState([]);
     const [loading, setLoading] = useState(true); 
     const [error, setError] = useState(null);
-    const [expandedCustomerID, setExpandedCustomerID] = useState(null);
+
+    const fetchCustomers = () => {
+        getCustomerAddressesByClientID(1)
+            .then(data => {
+                setCustomers(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                setError(err.message);
+                setLoading(false);
+            });
+    };
+
+    const refreshCustomersList = () => {
+        setLoading(true); // Set loading to true to show a loading indicator
+        fetchCustomers();
+    };
 
     useEffect(() => {
         // Using ClientID 1 for testing. REMINDER: Make dynamic later.
         // Only fetch if there's no external data provided
         if (externalCustomers.length === 0) {
-            getCustomerAddressesByClientID(1)
-                .then(data => {
-                    setCustomers(data);
-                    setLoading(false);
-                })
-                .catch(err => {
-                    setError(err.message);
-                    setLoading(false);
-                });
+            fetchCustomers();
         } else {
             setCustomers(externalCustomers);
             setLoading(false);
@@ -39,6 +47,7 @@ const ListView = ({ customers: externalCustomers, setSelectedCustomer, selectedC
 
     return (
         <div className="customer-list">
+            <button className="button" onClick={refreshCustomersList}>Refresh List</button>
             {customers.map(customer => 
                 <CustomerListItem 
                     key={customer.CustomerID} 
@@ -47,7 +56,7 @@ const ListView = ({ customers: externalCustomers, setSelectedCustomer, selectedC
                     onToggle={() => {
                         setSelectedCustomer(customer);  // This will now pass the entire customer object with "CustomerID" field
                     }}
-                    
+                    onEdit={() => onEdit(customer)}  // Propagate the function
                 />
             )}
         </div>

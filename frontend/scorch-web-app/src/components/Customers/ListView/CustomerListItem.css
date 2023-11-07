@@ -1,21 +1,2 @@
-.customer-item {
-    padding: 10px;
-    border: 1px solid #ddd;  /* Change this line to add a border to each item */
-    margin-bottom: 10px;     /* Add space between each item */
-    border-radius: 5px;      /* Optional: round the corners a bit */
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.customer-item:hover {
-    background-color: #f7f7f7;
-}
-
-
-.customer-details {
-    margin-top: 10px;
-    background-color: #fafafa;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border-radius: 5px;
-}
+/*"\frontend\scorch-web-app\src\components\Customers\ListView\CustomerListItem.css" */
+.customer-item {     padding: 10px;     border: 1px solid #ddd;  /* Change this line to add a border to each item */     margin-bottom: 10px;     /* Add space between each item */     border-radius: 5px;      /* Optional: round the corners a bit */     cursor: pointer;     transition: background-color 0.3s; }  .customer-item:hover {     background-color: #f7f7f7; }   .customer-details {     margin-top: 10px;     background-color: #fafafa;     border: 1px solid #e0e0e0;     box-shadow: 0 2px 8px rgba(0,0,0,0.1);     border-radius: 5px; }
