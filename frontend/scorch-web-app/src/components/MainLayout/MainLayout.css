@@ -1,3 +1,5 @@
+/*./frontend/scorch-web-app/src/components/MainLayout/MainLayout.css*/
+
 .mainLayout {
     display: flex;
     flex-direction: column;
@@ -19,35 +21,40 @@
     background-color: #dddddd;
     width: 250px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    position: fixed; /* fixed position */
-    z-index: 1; /* above the content */
-    left: -250px; /* initially off screen */
-    height: 100%; /* full height */
-    overflow-x: hidden; /* prevents horizontal scroll */
-    transition: 0.5s; /* smooth transition for sidebar */
+    position: fixed;
+    z-index: 1;
+    left: 0; /* make sidebar visible by default */
+    height: 100%;
+    overflow-x: hidden;
+    transition: 0.5s;
 }
 
 .contentArea {
     flex-grow: 1;
     overflow: auto;
     padding: 20px;
-    margin-left: 0; /* no margin if sidebar is hidden */
+    margin-left: 250px; /* give space for the sidebar */
 }
 
-/* When sideBar is open, shift contentArea */
-.sideBarOpen .contentArea {
-    margin-left: 250px; /* match the width of the sidebar */
-}
 
 /* Mobile view */
 @media screen and (max-width: 768px) {
     .sideBar {
-        width: 100%; /* full width */
-        left: -100%; /* initially off screen */
+        width: 100%;
+        left: -100%; /* hide sidebar off-screen */
+    }
+
+    /* Use this rule to show the sidebar when .sideBarOpen is added */
+    .sideBar.sideBarOpen {
+        left: 0; /* bring sidebar on screen */
+    }
+
+    .contentArea {
+        margin-left: 0; /* no margin when sidebar is hidden */
     }
 
     /* When sideBar is open, shift contentArea */
-    .sideBarOpen .contentArea {
-        margin-left: 100%; /* full width */
+    .sideBarOpen + .contentArea {
+        margin-left: 250px; /* push content over when sidebar is visible */
     }
 }

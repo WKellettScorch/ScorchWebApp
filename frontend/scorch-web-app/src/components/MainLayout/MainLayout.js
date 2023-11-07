@@ -17,7 +17,7 @@ const MainLayout = ({ children }) => {
         <div className="mainLayout">
             <TopNavBar toggleNavVisibility={toggleNavVisibility} />
             <div className="bodyWrapper">
-                <div className={`sideBar ${isNavVisible ? 'sideBarOpen' : ''}`}> 
+            <div className={`sideBar ${isNavVisible ? 'sideBarOpen' : ''}`}>
                     <SideNavBar isNavVisible={isNavVisible} toggleNavVisibility={toggleNavVisibility} />
                 </div>
                 <div className="contentArea">
