@@ -34,16 +34,14 @@
 
 @media (max-width: 768px) {
     .topNavBar .leftSection {
-        max-width: 30%;
-        max-height: 30%;
+        max-width: 20%;
         margin-right: 10px;
         margin-left: 20px;
 
     }
 
     .topNavbar .centerSection {
-        max-width: 30%;
-        max-height: 30%;
+        max-width: 20%;
         margin-right: 10px;
         margin-left: 20px;
     }
