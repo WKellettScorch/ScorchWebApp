@@ -35,9 +35,10 @@
 @media (max-width: 768px) {
     .topNavBar .leftSection img {
         display: block;
-        max-width: 50px;
-        max-height: 30px;
+        max-width: 20%;
+        max-height: 10%;
         margin-right: 10px;
+        margin-left: 20px;
 
     }
 
