@@ -1,2 +1,18 @@
 /*"\frontend\scorch-web-app\src\components\Logo\Logo.css" */
-.logoContainer {     display: flex;     justify-content: center;     align-items: center;     padding: 20px; }  .logoImage {     width: 80%;     max-width: 150px; }
+.logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.logoImage {
+    width: 80%;
+    max-width: 150px;
+}
+
+@media (max-width: 768px) {
+    .logoImage {
+        width: 60%;
+    }
+}
