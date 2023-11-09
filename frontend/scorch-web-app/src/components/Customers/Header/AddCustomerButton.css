@@ -1,2 +1,18 @@
 /*"\frontend\scorch-web-app\src\components\Customers\Header\AddCustomerButton.css" */
-.add-customer-btn {     padding: 5px 15px;     cursor: pointer; }
+.add-customer-btn {
+    max-width: 10%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #3498db;
+    /* a moderate blue */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    /* Add some hover effect for better UX */
+    &:hover {
+        background-color: #2980b9;
+        /* a slightly darker blue on hover */
+    }
+}

@@ -27,6 +27,12 @@
     }
 }
 
+.button-container {
+    display: flex;
+    align-items: center; /* This will vertically center your buttons if they have different heights */
+ }
+  
+
 @media (max-width: 768px) {
     .button {
         max-width: 30%

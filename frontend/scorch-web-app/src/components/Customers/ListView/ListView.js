@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react';
 import CustomerListItem from './CustomerListItem';
 import './ListView.css';
 import { getCustomerAddressesByClientID } from '../../../api/CustomerAPI';
+import AddCustomerButton from '../Header/AddCustomerButton';
 
-const ListView = ({ customers: externalCustomers, setSelectedCustomer, selectedCustomerId, onEdit }) => {
+const ListView = ({ customers: externalCustomers, setSelectedCustomer, selectedCustomerId, onEdit, children }) => {
     const [customers, setCustomers] = useState([]);
     const [loading, setLoading] = useState(true); 
     const [error, setError] = useState(null);
@@ -50,7 +51,10 @@ const ListView = ({ customers: externalCustomers, setSelectedCustomer, selectedC
 
     return (
         <div className="customer-list">
+            <div className='button-container'>
             <button className="button" onClick={refreshCustomersList}>Refresh List</button>
+            {children}
+            </div>
             {customers.map(customer => 
                 <CustomerListItem 
                     key={customer.CustomerID} 

@@ -64,18 +64,19 @@ const handleCloseAddForm = () => {
 
     return (
     <div className="customers-view-container">
-        <Header>
-            <AddCustomerButton onClick={handleAddCustomerClick} />
-        </Header>
-        {showAddForm && <AddCustomerForm onClose={handleCloseAddForm} />}
-	
+        <Header/>	
         <SearchAndFilterSection onSearch={handleSearch} />
-        <ListView 
-            customers={displayedCustomers} 
-            setSelectedCustomer={setSelectedCustomer}
-            selectedCustomerId={selectedCustomer ? selectedCustomer.CustomerID : null}
-	    onEdit={handleEditCustomerClick}
-        />
+        <ListView
+  customers={displayedCustomers}
+  setSelectedCustomer={setSelectedCustomer}
+  selectedCustomerId={selectedCustomer ? selectedCustomer.CustomerID : null}
+  onEdit={handleEditCustomerClick}
+>
+  <AddCustomerButton onClick={handleAddCustomerClick} />
+</ListView>
+
+        {showAddForm && <AddCustomerForm onClose={handleCloseAddForm} />}
+
 	{showEditForm && <EditCustomerForm onClose={() => setShowEditForm(false)} customer={editingCustomer} />}
             
         </div>
