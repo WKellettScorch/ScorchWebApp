@@ -13,7 +13,7 @@ const TopNavBar = ({ toggleNavVisibility }) => {
                     toggleNavVisibility}>
                     <FaBars size={20} />
                 </div>
-                <img src={ScorchLogo} alt="Scorch Logo"></img>
+                <img className={"scorchLogo"} src={ScorchLogo} alt="Scorch Logo"></img>
             </div>
             <div className="centerSection">
                 <Logo />
