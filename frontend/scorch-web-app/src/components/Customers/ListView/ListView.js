@@ -8,6 +8,7 @@ const ListView = ({ customers: externalCustomers, setSelectedCustomer, selectedC
     const [customers, setCustomers] = useState([]);
     const [loading, setLoading] = useState(true); 
     const [error, setError] = useState(null);
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const fetchCustomers = () => {
         getCustomerAddressesByClientID(1)
@@ -19,6 +20,8 @@ const ListView = ({ customers: externalCustomers, setSelectedCustomer, selectedC
                 setError(err.message);
                 setLoading(false);
             });
+            console.log(`Requesting data from: ${API_URL}/api/customers/address/1`);
+
     };
 
     const refreshCustomersList = () => {

@@ -10,7 +10,6 @@ const MainLayout = ({ children }) => {
     // Function to toggle the visibility
     const toggleNavVisibility = () => {
         setIsNavVisible(!isNavVisible);
-        console.log("MainLayout.js: " + isNavVisible);
     };    
 
     return (

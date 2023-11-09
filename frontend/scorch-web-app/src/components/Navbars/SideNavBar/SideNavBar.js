@@ -39,7 +39,6 @@ const SideNavBar = ({ isNavVisible, toggleNavVisibility }) => {
 
     return (
         <div className={`sideNavBar ${isNavVisible ? 'sideBarOpen' : ''}`}>
-            {console.log("sideNavBar.js : " + isNavVisible)}
             {navItems.map((item, index) => (
                 <Link
                     key={index}
