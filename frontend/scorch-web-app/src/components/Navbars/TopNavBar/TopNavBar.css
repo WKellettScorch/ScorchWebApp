@@ -97,4 +97,8 @@
         background-color: rgba(0, 0, 0, 0.5);
         /* Semi-transparent overlay */
     }
+
+    .scorchLogo {
+        max-width: 20%;
+    }
 }

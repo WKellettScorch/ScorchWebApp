@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize');
+/*const { Sequelize } = require('sequelize');
 
 const dbConfig = {
     username: 'wesley.kellett',
@@ -19,6 +19,27 @@ const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.p
     dialect: dbConfig.dialect,
     logging: dbConfig.logging,
     pool: dbConfig.pool
+});*/
+
+
+const { Sequelize } = require('sequelize');
+
+// If using Windows Authentication, username and password are not needed
+const sequelize = new Sequelize('SCORCH_DB', 'service_account', 'password', {
+    host: 'localhost', // Try without specifying the instance name
+    dialect: 'mssql',
+    logging: false,
+    pool: {
+        max: 5,
+        min: 0,
+        idle: 10000
+    },
+    dialectOptions: {
+        options: {
+            // For Windows Authentication
+            trustedConnection: true
+        }
+    }
 });
 
 module.exports = sequelize;
