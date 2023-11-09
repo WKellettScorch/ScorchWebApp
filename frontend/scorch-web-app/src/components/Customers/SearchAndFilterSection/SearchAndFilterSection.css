@@ -1,2 +1,49 @@
-/*"\frontend\scorch-web-app\src\components\Customers\SearchAndFilterSection\SearchAndFilterSection.css" */
-.search-and-filter {     display: flex;     align-items: center;     margin: 10px; }  input {     user-select: text;     margin: 10px;     border-radius: 5px; }  button {     margin-top: 10px;     margin-left: 10px;     padding: 10px 20px;     border-radius: 5px;     border: none;     background-color: #3498db; /* a moderate blue */     color: white;     cursor: pointer;     transition: background-color 0.3s;      /* Add some hover effect for better UX */     &:hover {         background-color: #2980b9; /* a slightly darker blue on hover */     } }
+.search-and-filter {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    flex-wrap: wrap; /* Allow items to wrap onto the next line */
+}
+
+input {
+    user-select: text;
+    margin: 10px;
+    border-radius: 5px;
+    flex: 1 1 auto; /* inputs will grow and shrink but always take up space */
+}
+
+button {
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #3498db; 
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Add some hover effect for better UX */
+button:hover {
+    background-color: #2980b9; /* a slightly darker blue on hover */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .search-and-filter {
+        flex-direction: column;
+        align-items: stretch; /* Stretch the children to match the parent's width */
+    }
+
+    input,
+    button {
+        margin-left: 0;
+        margin-right: 0;
+        width: calc(100% - 20px); /* Subtract the margin from the width */
+    }
+
+    button {
+        margin-top: 10px;
+    }
+}
