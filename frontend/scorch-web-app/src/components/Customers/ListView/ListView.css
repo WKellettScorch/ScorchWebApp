@@ -37,4 +37,8 @@
     .button {
         max-width: 30%
     }
+
+    .button-container {
+        justify-content: space-between;
+    }
  }

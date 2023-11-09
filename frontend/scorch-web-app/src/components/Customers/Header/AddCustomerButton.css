@@ -16,3 +16,9 @@
         /* a slightly darker blue on hover */
     }
 }
+
+@media (max-width: 768px) {
+    .add-customer-btn {
+        max-width: 30%
+    }
+ }
