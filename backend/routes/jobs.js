@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 router.get('/related/:clientID/:customerID', async (req, res) => {
     try {
         const { clientID, customerID } = req.params;
-        const jobs = await JobsSP.getJobsByCustomerID(clientID, customerID);
+        const jobs = await JobsSP.getRelatedJobsByCustomerID(clientID, customerID);
         res.json(jobs);
     } catch (err) {
         console.error('Error:', err.message);

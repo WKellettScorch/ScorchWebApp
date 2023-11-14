@@ -4,7 +4,7 @@ const sequelize = require('../config/database');
 const { QueryTypes } = require('sequelize');
 const JobsSP = {};
 
-JobsSP.getJobsByCustomerID = async (clientID, customerID) => {
+JobsSP.getRelatedJobsByCustomerID = async (clientID, customerID) => {
     return await sequelize.query('EXEC GetRelatedJobs @ClientID=:clientID, @CustomerID=:customerID', {
         replacements: { 
             clientID: clientID,
@@ -13,3 +13,5 @@ JobsSP.getJobsByCustomerID = async (clientID, customerID) => {
         type: QueryTypes.SELECT
     });
 }
+
+module.exports = JobsSP;
