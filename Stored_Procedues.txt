@@ -182,3 +182,27 @@ BEGIN
         AddressID = @AddressID
     WHERE CustomerID = @CustomerID
 END
+
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[GetRelatedJobs]
+    @CustomerID INT,
+    @ClientID INT = 1  -- Default value set to 1 for now
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Fetching jobs related to the CustomerID and ClientID
+    SELECT JobID, JobDescription, StartDate, EndDate, JobStatus, AddressID, ClientID, CustomerID
+    FROM Jobs
+    WHERE CustomerID = @CustomerID AND ClientID = @ClientID
+
+    -- Optionally you can order the result set
+    ORDER BY StartDate DESC
+END
+GO

@@ -1,6 +1,7 @@
 .search-and-filter {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: left;
     margin: 10px;
     flex-wrap: wrap; /* Allow items to wrap onto the next line */
 }
@@ -9,6 +10,7 @@ input {
     user-select: text;
     margin: 10px;
     border-radius: 5px;
+    max-width: 20%;
     flex: 1 1 auto; /* inputs will grow and shrink but always take up space */
 }
 
@@ -17,6 +19,7 @@ button {
     margin-left: 10px;
     padding: 10px 20px;
     border-radius: 5px;
+    max-width: 10%;
     border: none;
     background-color: #3498db; 
     color: white;

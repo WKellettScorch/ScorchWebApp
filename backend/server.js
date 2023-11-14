@@ -27,9 +27,11 @@ sequelize.sync({ force: false }).then(() => {
 
 // Import your routes
 const customersRoutes = require('./routes/customers');
+const jobsRoutes = require('./routes/jobs');
 
 // Use the routes with your Express app
 app.use('/api/customers', customersRoutes);
+app.use('/api/jobs', jobsRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
