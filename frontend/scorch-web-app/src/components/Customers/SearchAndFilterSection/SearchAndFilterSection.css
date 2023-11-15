@@ -44,6 +44,7 @@ button:hover {
         margin-left: 0;
         margin-right: 0;
         width: calc(100% - 20px); /* Subtract the margin from the width */
+        max-width: 100%;
     }
 
     button {
