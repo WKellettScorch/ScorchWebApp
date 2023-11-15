@@ -13,7 +13,7 @@ import EditCustomerForm from './Header/EditCustomerForm';
 const CustomersView = () => {
     // A state to store all customers
     const [customers, setCustomers] = useState([]);
-    
+
     // A state to store filtered or sorted customers
     const [displayedCustomers, setDisplayedCustomers] = useState([]);
 
@@ -45,40 +45,40 @@ const CustomersView = () => {
                 console.error(error);
             });
     }
-    
-        const handleEditCustomerClick = (customer) => {
-            console.log("Edit button clicked in CustomersView");
+
+    const handleEditCustomerClick = (customer) => {
+        console.log("Edit button clicked in CustomersView");
         setEditingCustomer(customer);
         setShowEditForm(true);
 
 
     };
-    
-    const handleAddCustomerClick = () => {
-    setShowAddForm(true);
-};
 
-const handleCloseAddForm = () => {
-    setShowAddForm(false);
-};
+    const handleAddCustomerClick = () => {
+        setShowAddForm(true);
+    };
+
+    const handleCloseAddForm = () => {
+        setShowAddForm(false);
+    };
 
     return (
-    <div className="customers-view-container">
-        <Header/>	
-        <SearchAndFilterSection onSearch={handleSearch} />
-        <ListView
-  customers={displayedCustomers}
-  setSelectedCustomer={setSelectedCustomer}
-  selectedCustomerId={selectedCustomer ? selectedCustomer.CustomerID : null}
-  onEdit={handleEditCustomerClick}
->
-  <AddCustomerButton onClick={handleAddCustomerClick} />
-</ListView>
+        <div className="customers-view-container">
+            <Header />
+            <SearchAndFilterSection onSearch={handleSearch} />
+            <ListView
+                customers={displayedCustomers}
+                setSelectedCustomer={setSelectedCustomer}
+                selectedCustomerId={selectedCustomer ? selectedCustomer.CustomerID : null}
+                onEdit={handleEditCustomerClick}
+            >
+                <AddCustomerButton onClick={handleAddCustomerClick} />
+            </ListView>
 
-        {showAddForm && <AddCustomerForm onClose={handleCloseAddForm} />}
+            {showAddForm && <AddCustomerForm onClose={handleCloseAddForm} />}
 
-	{showEditForm && <EditCustomerForm onClose={() => setShowEditForm(false)} customer={editingCustomer} />}
-            
+            {showEditForm && <EditCustomerForm onClose={() => setShowEditForm(false)} customer={editingCustomer} />}
+
         </div>
     );
 }
