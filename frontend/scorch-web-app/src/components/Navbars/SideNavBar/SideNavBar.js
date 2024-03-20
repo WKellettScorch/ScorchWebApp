@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types'; // Import PropTypes
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import PropTypes from 'prop-types';
 import './SideNavBar.css';
 
 const SideNavBar = ({ isNavVisible, toggleNavVisibility }) => {
     const [selectedNavItem, setSelectedNavItem] = useState('Home');
+    const navigate = useNavigate(); // Initialize the navigate function
 
-    const handleNavItemClick = (item) => {
+    const handleNavItemClick = (item, route) => {
         setSelectedNavItem(item);
-        // Close the side nav bar when an item is clicked
-        toggleNavVisibility();
+        toggleNavVisibility(); 
+
+        // If the clicked item is 'Log Out', clear the token and navigate to login page
+        if (item === 'Log Out') {
+            localStorage.removeItem('token'); // Clear the JWT token
+            navigate('/'); // Navigate to the login screen
+        }
     };
 
     const navItems = [
@@ -19,8 +25,7 @@ const SideNavBar = ({ isNavVisible, toggleNavVisibility }) => {
         { label: 'Google Reviews', route: '/GoogleReviewsView' },
         { label: 'Image Uploader', route: '/ImageUploaderView' },
         { label: 'Settings', route: '/SettingsView' },
-        { label: 'Log Out', route: '/LogOutView' },
-        // Add other items as needed
+        // Removed the Log Out route as it will be handled differently
     ];
 
     // Use an effect to add an event listener to the document
@@ -44,19 +49,24 @@ const SideNavBar = ({ isNavVisible, toggleNavVisibility }) => {
                     key={index}
                     to={item.route}
                     className={`navItem ${selectedNavItem === item.label ? 'selected' : ''}`}
-                    onClick={() => handleNavItemClick(item.label)}
+                    onClick={() => handleNavItemClick(item.label, item.route)} // Pass the route as a parameter
                 >
                     {item.label}
                 </Link>
             ))}
+            <div // Use a div or button for Log Out to handle click separately
+                className={`navItem ${selectedNavItem === 'Log Out' ? 'selected' : ''}`}
+                onClick={() => handleNavItemClick('Log Out')} // No route needed for Log Out
+            >
+                Log Out
+            </div>
         </div>
     );
 };
 
-// Add prop types validation
 SideNavBar.propTypes = {
     isNavVisible: PropTypes.bool.isRequired,
-    toggleNavVisibility: PropTypes.func.isRequired
+    toggleNavVisibility: PropTypes.func.isRequired,
 };
 
 export default SideNavBar;

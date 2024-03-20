@@ -32,7 +32,7 @@ function App() {
           } 
         />
         {/* Define other routes inside ProtectedRoute as needed */}
-        <Route 
+        {/*<Route 
           path="*" 
           element={
             <ProtectedRoute>
@@ -41,7 +41,7 @@ function App() {
               </MainLayout>
             </ProtectedRoute>
           }
-        />
+        />*/}
       </Routes>
     </Router>
   );

@@ -1,28 +1,24 @@
+// frontend/components/Login/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
-import ScorchLogo from '../../assets/images/Scorch_200x100.png'; // Ensure path is correct
-import { login } from '../../api/LoginAPI'; // Ensure path is correct
+import ScorchLogo from '../../assets/images/Scorch_200x100.png';
+import { login } from '../../api/LoginAPI';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // Add state for error messages
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { clientId, token } = await login(username, password);
-      localStorage.setItem('token', token); // Save the token
-      console.log("Login successful for clientId:", clientId); // Demonstrates potential use of clientId
-
-      // Optionally, use clientId for further logic, e.g., fetching user details
-      // This is where you might use clientId, depending on your app's requirements
-
-      navigate('/home'); // Navigate to the home page after login
+      localStorage.setItem('token', token);
+      navigate('/home');
     } catch (error) {
-      console.error('Login error:', error);
-      alert('Login failed!');
+        setErrorMessage(error.message || 'Login failed due to an unexpected error.');
     }
   };
 
@@ -32,6 +28,7 @@ function Login() {
         <img src={ScorchLogo} alt="Scorch SEO" />
         <h1>Welcome to Scorch SEO</h1>
       </div>
+      {errorMessage && <div className="login-error">{errorMessage}</div>} {/* Display error message */}
       <form className="login-form" onSubmit={handleSubmit}>
         <input
           type="text"

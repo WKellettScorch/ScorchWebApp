@@ -22,30 +22,26 @@
     cursor: pointer;
     transition: background-color 0.2s;
     text-align: left;
+    text-decoration: none; /* Remove underline from links */
+    color: black; /* Text color */
+}
 
-    /* Aligned text to left for better appearance */
-    &:first-child {
-        border-top: none;
-    }
+.navItem:first-child {
+    border-top: none;
+}
 
-    &:hover {
-        background-color: #34495e;
-        /* Darker shade for hover */
-        color: #ecf0f1;
-        /* Light color on hover */
-    }
+.navItem:hover {
+    background-color: #34495e;
+    color: #ecf0f1;
+}
 
-    &.selected {
-        background-color: #e74c3c;
-        /* A vibrant red for active selection */
-        color: #ffffff;
-        /* White text for selected item */
-    }
+.navItem.selected {
+    background-color: #e74c3c;
+    color: #ffffff;
+}
 
-    /* No bottom border for the last item */
-    &:last-child {
-        border-bottom: none;
-    }
+.navItem:last-child {
+    border-bottom: none;
 }
 
 /* Your other styles remain unchanged */

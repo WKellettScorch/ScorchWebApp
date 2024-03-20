@@ -30,7 +30,7 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize('SCORCH_DB', 'service_account', 'password', {
     host: 'localhost', // Try without specifying the instance name
     dialect: 'mssql',
-    logging: console.log,
+    logging: false,
     pool: {
         max: 5,
         min: 0,

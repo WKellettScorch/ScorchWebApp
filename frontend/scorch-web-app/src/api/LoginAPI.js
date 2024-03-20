@@ -13,8 +13,8 @@ export const login = async (username, password) => {
             body: JSON.stringify({ username, password }),
         });
         if (!response.ok) {
-            console.error('Login API response not OK:', response.status, response.statusText);
-            throw new Error('Failed to login');
+        const errorDetails = await response.json(); // Assuming the server sends back a JSON response with an error message
+        throw new Error(errorDetails.message || 'Server responded with an error'); // Customize error message as needed
         }
         return await response.json();
     } catch (error) {
