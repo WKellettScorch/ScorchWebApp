@@ -3,23 +3,23 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import ScorchLogo from '../../assets/images/Scorch_200x100.png';
-import { login } from '../../api/LoginAPI';
+import { useAuth } from './AuthContext'; // Adjust this path if necessary
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // Add state for error messages
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth(); // Destructuring login from useAuth
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { clientId, token } = await login(username, password);
-      localStorage.setItem('token', token);
-      navigate('/home');
-    } catch (error) {
-        setErrorMessage(error.message || 'Login failed due to an unexpected error.');
-    }
+      e.preventDefault();
+      try {
+          await login(username, password); // Use login from AuthContext
+          navigate('/home');
+      } catch (error) {
+          setErrorMessage(error.message || 'Login failed due to an unexpected error.');
+      }
   };
 
   return (

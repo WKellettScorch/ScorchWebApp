@@ -3,16 +3,19 @@ import React, { useState, useEffect } from 'react';
 import CustomerListItem from './CustomerListItem';
 import './ListView.css';
 import { getCustomerAddressesByClientID } from '../../../api/CustomerAPI';
-import AddCustomerButton from '../Header/AddCustomerButton';
+import { useAuth } from '../../Login/AuthContext'; 
+
 
 const ListView = ({ customers: externalCustomers, setSelectedCustomer, selectedCustomerId, onEdit, children }) => {
     const [customers, setCustomers] = useState([]);
     const [loading, setLoading] = useState(true); 
     const [error, setError] = useState(null);
     const API_URL = process.env.REACT_APP_API_URL;
+    const { clientId } = useAuth(); 
+
 
     const fetchCustomers = () => {
-        getCustomerAddressesByClientID(1)
+        getCustomerAddressesByClientID(clientId) // Use ClientID from AuthContext
             .then(data => {
                 setCustomers(data);
                 setLoading(false);
@@ -21,8 +24,7 @@ const ListView = ({ customers: externalCustomers, setSelectedCustomer, selectedC
                 setError(err.message);
                 setLoading(false);
             });
-            console.log(`Requesting data from: ${API_URL}/api/customers/address/1`);
-
+        console.log(`Requesting data from: ${API_URL}/api/customers/address/${clientId}`);
     };
 
     const refreshCustomersList = () => {
@@ -31,7 +33,6 @@ const ListView = ({ customers: externalCustomers, setSelectedCustomer, selectedC
     };
 
     useEffect(() => {
-        // Using ClientID 1 for testing. REMINDER: Make dynamic later.
         // Only fetch if there's no external data provided
         if (externalCustomers.length === 0) {
             fetchCustomers();

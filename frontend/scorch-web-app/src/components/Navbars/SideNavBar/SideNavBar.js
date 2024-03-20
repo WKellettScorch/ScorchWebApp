@@ -1,21 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import React, { useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom'; // Import useLocation
 import PropTypes from 'prop-types';
 import './SideNavBar.css';
 
 const SideNavBar = ({ isNavVisible, toggleNavVisibility }) => {
-    const [selectedNavItem, setSelectedNavItem] = useState('Home');
-    const navigate = useNavigate(); // Initialize the navigate function
+    const navigate = useNavigate(); // Use navigate for redirection
+    const location = useLocation(); // Use location to determine the current route
 
-    const handleNavItemClick = (item, route) => {
-        setSelectedNavItem(item);
-        toggleNavVisibility(); 
-
-        // If the clicked item is 'Log Out', clear the token and navigate to login page
-        if (item === 'Log Out') {
-            localStorage.removeItem('token'); // Clear the JWT token
-            navigate('/'); // Navigate to the login screen
+    // Determines the label of the selected nav item based on the current path
+    const getSelectedNavItem = () => {
+        const routePath = location.pathname;
+        switch (routePath) {
+            case '/home':
+                return 'Home';
+            case '/customers':
+                return 'Customers';
+            case '/jobs':
+                return 'Jobs';
+            // Add more cases as needed
+            default:
+                return 'Home'; // Default selection
         }
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token'); // Clear the JWT token
+        toggleNavVisibility(); // Optionally close the sidebar
+        navigate('/'); // Navigate to the login screen
     };
 
     const navItems = [
@@ -25,11 +36,10 @@ const SideNavBar = ({ isNavVisible, toggleNavVisibility }) => {
         { label: 'Google Reviews', route: '/GoogleReviewsView' },
         { label: 'Image Uploader', route: '/ImageUploaderView' },
         { label: 'Settings', route: '/SettingsView' },
-        // Removed the Log Out route as it will be handled differently
     ];
 
-    // Use an effect to add an event listener to the document
     useEffect(() => {
+        // Add event listener to close the nav on outside click
         const handleOutsideClick = (event) => {
             if (isNavVisible && !event.target.closest('.sideNavBar')) {
                 toggleNavVisibility();
@@ -48,15 +58,15 @@ const SideNavBar = ({ isNavVisible, toggleNavVisibility }) => {
                 <Link
                     key={index}
                     to={item.route}
-                    className={`navItem ${selectedNavItem === item.label ? 'selected' : ''}`}
-                    onClick={() => handleNavItemClick(item.label, item.route)} // Pass the route as a parameter
+                    className={`navItem ${getSelectedNavItem() === item.label ? 'selected' : ''}`}
+                    onClick={toggleNavVisibility} // Close nav on item click
                 >
                     {item.label}
                 </Link>
             ))}
-            <div // Use a div or button for Log Out to handle click separately
-                className={`navItem ${selectedNavItem === 'Log Out' ? 'selected' : ''}`}
-                onClick={() => handleNavItemClick('Log Out')} // No route needed for Log Out
+            <div 
+                className={`navItem ${getSelectedNavItem() === 'Log Out' ? 'selected' : ''}`}
+                onClick={handleLogout} // Handle logout click separately
             >
                 Log Out
             </div>

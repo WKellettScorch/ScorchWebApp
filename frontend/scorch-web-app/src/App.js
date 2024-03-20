@@ -4,10 +4,13 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import MainLayout from './components/MainLayout/MainLayout';
 import CustomersView from './components/Customers/CustomersView';
 import HomeComponent from './components/HomeComponent/HomeComponent';
-import Login from './components/Login/Login'; // Ensure correct path to Login component
+import Login from './components/Login/Login'; 
+import { AuthProvider } from './components/Login/AuthContext'; 
+
 
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
@@ -44,6 +47,7 @@ function App() {
         />*/}
       </Routes>
     </Router>
+    </AuthProvider>
   );
 }
 
