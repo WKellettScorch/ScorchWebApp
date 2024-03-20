@@ -1,6 +1,5 @@
 import React from 'react';
 import './Header.css';
-import AddCustomerButton from './AddCustomerButton';
 
 // In Header.js
 const Header = ({ children }) => {

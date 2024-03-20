@@ -1,3 +1,5 @@
+//.\backend\config\database.js
+
 /*const { Sequelize } = require('sequelize');
 
 const dbConfig = {
@@ -28,7 +30,7 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize('SCORCH_DB', 'service_account', 'password', {
     host: 'localhost', // Try without specifying the instance name
     dialect: 'mssql',
-    logging: false,
+    logging: console.log,
     pool: {
         max: 5,
         min: 0,
@@ -41,5 +43,6 @@ const sequelize = new Sequelize('SCORCH_DB', 'service_account', 'password', {
         }
     }
 });
+
 
 module.exports = sequelize;

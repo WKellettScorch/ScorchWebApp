@@ -1,20 +1,13 @@
-//.\backend\server.js
 const express = require('express');
 const bodyParser = require('body-parser');
-const sequelize = require('./config/database');  // Importing the sequelize instance from database.js
-const app = express();
+const sequelize = require('./config/database');
 const cors = require('cors');
+const app = express();
 
-app.use(cors({
-    //origin: 'http://localhost:3001'
-    origin: '*'
-}));
-
-
-// Middleware to parse the body of the request
+app.use(cors({ origin: '*' })); // Note about CORS for production
 app.use(bodyParser.json());
 
-// Test database connection
+// Testing database connection
 sequelize.authenticate().then(() => {
     console.log('Connection to database established successfully.');
 }).catch(err => {
@@ -25,13 +18,14 @@ sequelize.sync({ force: false }).then(() => {
     console.log('Database & tables synchronized');
 });
 
-// Import your routes
+// Import routes
 const customersRoutes = require('./routes/customers');
 const jobsRoutes = require('./routes/jobs');
+const loginRoute = require('./routes/login');
 
-// Use the routes with your Express app
 app.use('/api/customers', customersRoutes);
 app.use('/api/jobs', jobsRoutes);
+app.use('/api/login', loginRoute); // Use the imported login route
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

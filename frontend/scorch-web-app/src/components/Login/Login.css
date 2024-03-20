@@ -1,0 +1,71 @@
+ 
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+  }
+  
+.login-branding {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.login-branding img {
+  max-width: 200px; /* Adjust if necessary */
+  margin-bottom: 10px;
+}
+
+.login-branding h1 {
+  color: #333;
+  font-size: 1.5em;
+}
+  .login-form {
+    padding: 40px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: flex; /* Ensuring flex display */
+    flex-direction: column; /* Stack elements in a single column */
+    align-items: center; /* Align items to the center */
+  }
+  
+  .login-form input {
+    user-select: text;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    max-width: 300px; /* Fixed max-width for better mobile responsiveness */
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px;
+  }
+  
+  .login-form button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 100%; /* Set to full width of the parent */
+    max-width: 300px; /* Same as input fields if you want to limit the max width */
+    border: none;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  
+  .login-form button:hover {
+    background-color: #2980b9;
+  }
+  
+  @media (max-width: 768px) {
+    .login-form input,
+    .login-form button {
+      margin: 10px 0;
+      width: calc(100% - 20px); /* Adjust width for mobile */
+    }
+  }
+  
