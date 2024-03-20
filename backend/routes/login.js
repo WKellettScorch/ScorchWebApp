@@ -3,7 +3,6 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/users-table'); // Ensure this path correctly points to your User model
-// Import sequelize instance
 const sequelize = require('../config/database');
 
 
