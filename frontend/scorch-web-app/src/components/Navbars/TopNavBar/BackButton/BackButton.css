@@ -16,5 +16,17 @@
     }
 }
 
+@media (max-width: 1030px) { 
+
+    .backButton{
+max-width: 20%;
+margin-left:-10%;
+    }
+}
+
 @media (max-width: 768px) { 
+
+    .backButton{
+max-width: 20%;
+    }
 }

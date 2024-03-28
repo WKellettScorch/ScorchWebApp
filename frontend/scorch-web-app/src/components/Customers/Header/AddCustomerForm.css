@@ -1,2 +1,75 @@
-/*"\frontend\scorch-web-app\src\components\Customers\Header\AddCustomerForm.css" */
-/* AddCustomerForm.css */  .add-customer-form-overlay {     display: flex;     justify-content: center;     align-items: center;     position: fixed;     top: 0;     left: 0;     right: 0;     bottom: 0;     background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */     z-index: 1000; /* ensuring the overlay is above other elements */ }  .add-customer-form {     background-color: #ffffff;     padding: 20px;     border-radius: 8px;     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* subtle box shadow */     width: 300px; /* adjust width if necessary */     box-sizing: border-box; }  .add-customer-form input {     display: block;     width: 100%;     padding: 10px;     margin-bottom: 10px;     border: 1px solid #e0e0e0; /* thin border */     border-radius: 4px;     box-sizing: border-box; }  .add-customer-form button {     margin-right: 10px;     padding: 7px 15px;     cursor: pointer;     border-radius: 4px;     border: 1px solid #e0e0e0;     background-color: #f7f7f7; }  .add-customer-form button:hover {     background-color: #e0e0e0; }  .add-customer-form button:last-of-type {     margin-right: 0; }
+/* AddCustomerForm.css */
+.add-customer-form-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.add-customer-form {
+    background-color: #ffffff;
+    padding: 10px; /* Increased padding for more space inside the form */
+    border-radius: 10px; /* Slightly larger border radius for a smoother look */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Full width */
+    max-width: 400px; /* Max width so it doesn't get too wide on larger screens */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+}
+
+.add-customer-form input {
+    display: block;
+    width: 100%;
+    max-width: 80%;
+    padding: 12px; /* Slightly more padding for a larger touch area */
+    margin-bottom: 15px; /* More space between fields */
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.add-customer-form button {
+    padding: 10px 0px;
+    margin-bottom: 10px; /* Space between buttons */
+    cursor: pointer;
+    border-radius: 6px;
+    border: none; /* Remove border for a cleaner look */
+    background-color: #3498db; /* A blue background for primary action */
+    color: white; /* White text on blue background */
+    font-weight: bold; /* Make the text stand out more */
+    max-width: 50%;
+}
+
+.add-customer-form button:hover {
+    background-color: #2980b9; /* A darker blue on hover for the primary action */
+}
+
+.add-customer-form button:last-of-type {
+    background-color: #bdc3c7; /* A neutral color for secondary action */
+    color: black;
+}
+
+.add-customer-form button:last-of-type:hover {
+    background-color: #95a5a6; /* A slightly darker shade on hover for the secondary action */
+}
+
+.add-customer-form-header {
+    align-items: center;
+    padding-left: 20%; 
+    padding-right: 20%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .add-customer-form {
+        padding: 20px; /* Less padding on smaller screens */
+        width: 90%; /* Take up more width on small screens */
+    }
+}

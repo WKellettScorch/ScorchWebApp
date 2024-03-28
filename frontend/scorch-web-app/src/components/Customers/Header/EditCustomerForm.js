@@ -32,6 +32,7 @@ const EditCustomerForm = ({ onClose, customer }) => {
     return (
         <div className="edit-customer-form-overlay">
             <form onSubmit={handleSubmit} className="add-customer-form">
+                <h3 className="edit-customer-header">Edit {formData.FirstName}'s Details</h3>
                 <input
                     type="text"
                     name="FirstName"

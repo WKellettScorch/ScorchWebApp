@@ -3,10 +3,13 @@
 import React, { useState } from 'react';
 import './AddCustomerForm.css';
 import { addCustomer } from '../../../api/CustomerAPI';
-//comment
+import { useAuth } from '../../Login/AuthContext'; 
+
+ 
 
 
 const AddCustomerForm = ({ onClose }) => {
+    const { clientId } = useAuth();
     const [formData, setFormData] = useState({
         StreetAddress: '',
         City: '',
@@ -17,7 +20,7 @@ const AddCustomerForm = ({ onClose }) => {
         LastName: '',
         Email: '',
         Phone: '',
-        ClientID: 1
+        ClientID: clientId
     });
 
     const handleInputChange = (event) => {
@@ -45,6 +48,7 @@ const AddCustomerForm = ({ onClose }) => {
     return (
         <div className="add-customer-form-overlay">
             <form onSubmit={handleSubmit} className="add-customer-form">
+            <h1 className="add-customer-form-header">Add Customer</h1>
                 <input
                     type="text"
                     name="FirstName"
